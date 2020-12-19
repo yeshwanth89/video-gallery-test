@@ -22,11 +22,11 @@ class InMemoryUserRepository implements UserRepository
     public function __construct(array $users = null)
     {
         $this->users = $users ?? [
-            1 => new User(1, 'bill.gates', 'Bill', 'Gates'),
-            2 => new User(2, 'steve.jobs', 'Steve', 'Jobs'),
-            3 => new User(3, 'mark.zuckerberg', 'Mark', 'Zuckerberg'),
-            4 => new User(4, 'evan.spiegel', 'Evan', 'Spiegel'),
-            5 => new User(5, 'jack.dorsey', 'Jack', 'Dorsey'),
+            1 => new User(1,'bill' ,'bill.gates', 'Bill', 'Gates'),
+            2 => new User(2,'steve@jobs.com' ,'steve.jobs', 'Steve', 'Jobs'),
+            3 => new User(3, 'mark@zuckerberg.com','mark.zuckerberg', 'Mark', 'Zuckerberg'),
+            4 => new User(4, 'evan@spiegel.com','evan.spiegel', 'Evan', 'Spiegel'),
+            5 => new User(5, 'jack@dorsey.com','jack.dorsey', 'Jack', 'Dorsey'),
         ];
     }
 
@@ -48,5 +48,17 @@ class InMemoryUserRepository implements UserRepository
         }
 
         return $this->users[$id];
+    }
+
+    public function findUserOfEmail(string $email): User
+    {
+        foreach ($this->users as $item) {
+            if ($item->getEmail()== $email) {
+                return $item;
+            }
+
+        }
+        throw new UserNotFoundException();
+
     }
 }

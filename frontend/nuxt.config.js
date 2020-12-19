@@ -29,6 +29,7 @@ export default {
   ** Global CSS
   */
   css: [
+
   ],
   /*
   ** Plugins to load before mounting the App
@@ -51,14 +52,27 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt'
-  ],
+
+    modules: [
+      // Doc: https://bootstrap-vue.js.org
+      'bootstrap-vue/nuxt'
+    ],
+  bootstrapVue: {
+    componentPlugins: [
+      'LayoutPlugin',
+      'FormPlugin',
+      'FormCheckboxPlugin',
+      'FormInputPlugin',
+      'FormRadioPlugin',
+      'ToastPlugin',
+      'ModalPlugin'
+    ],
+    directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin', 'VBScrollspyPlugin'],},
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+
   }
 }

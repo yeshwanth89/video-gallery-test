@@ -11,44 +11,48 @@ class UserTest extends TestCase
     public function userProvider()
     {
         return [
-            [1, 'bill.gates', 'Bill', 'Gates'],
-            [2, 'steve.jobs', 'Steve', 'Jobs'],
-            [3, 'mark.zuckerberg', 'Mark', 'Zuckerberg'],
-            [4, 'evan.spiegel', 'Evan', 'Spiegel'],
-            [5, 'jack.dorsey', 'Jack', 'Dorsey'],
+            [1,'bill@gates.com', 'bill.gates', 'Bill', 'Gates'],
+            [2,'steve@jobs.com' ,'steve.jobs', 'Steve', 'Jobs'],
+            [3,'mark@zuckerberg.com' ,'mark.zuckerberg', 'Mark', 'Zuckerberg'],
+            [4,'evan@spiegel.com' ,'evan.spiegel', 'Evan', 'Spiegel'],
+            [5,'jack@dorsgey.com' ,'jack.dorsey', 'Jack', 'Dorsey'],
         ];
     }
 
     /**
      * @dataProvider userProvider
      * @param $id
+     * @param $email
      * @param $username
      * @param $firstName
      * @param $lastName
      */
-    public function testGetters($id, $username, $firstName, $lastName)
+    public function testGetters($id,$email, $username, $firstName, $lastName)
     {
-        $user = new User($id, $username, $firstName, $lastName);
+        $user = new User($id,$email, $username, $firstName, $lastName);
 
         $this->assertEquals($id, $user->getId());
         $this->assertEquals($username, $user->getUsername());
         $this->assertEquals($firstName, $user->getFirstName());
         $this->assertEquals($lastName, $user->getLastName());
+        $this->assertEquals($email, $user->getEmail());
     }
 
     /**
      * @dataProvider userProvider
      * @param $id
+     * @param $email
      * @param $username
      * @param $firstName
      * @param $lastName
      */
-    public function testJsonSerialize($id, $username, $firstName, $lastName)
+    public function testJsonSerialize($id,$email, $username, $firstName, $lastName)
     {
-        $user = new User($id, $username, $firstName, $lastName);
+        $user = new User($id,$email, $username, $firstName, $lastName);
 
         $expectedPayload = json_encode([
             'id' => $id,
+            'email'=>$email,
             'username' => $username,
             'firstName' => $firstName,
             'lastName' => $lastName,
